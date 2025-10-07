@@ -1,16 +1,195 @@
-<html>
-    <h1>
-        Hey ich bin Niklas
-    </h1>
-    <body>
-        <h2>Über mich</h2>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über Niklas</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #f5f5f5;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text: #1f2933;
+            --accent: #2563eb;
+            --shadow: 0 20px 45px rgba(31, 41, 51, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #a5b4fc, #93c5fd, #c4f1f9);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 4rem 1.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.03em;
+        }
+
+        header p {
+            margin: 0.5rem auto 0;
+            max-width: 50ch;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        main {
+            width: min(960px, 90vw);
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 60px rgba(31, 41, 51, 0.22);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.6rem;
+        }
+
+        p {
+            line-height: 1.7;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+            margin: 1rem 0 0;
+        }
+
+        li + li {
+            margin-top: 0.5rem;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            margin-top: 1.5rem;
+        }
+
+        .cta span {
+            display: inline-block;
+            transition: transform 150ms ease;
+        }
+
+        .cta:hover span {
+            transform: translateX(4px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem 3rem;
+            font-size: 0.9rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --card-bg: rgba(15, 23, 42, 0.8);
+                --text: #e2e8f0;
+                --accent: #60a5fa;
+                --shadow: 0 20px 45px rgba(15, 23, 42, 0.6);
+            }
+
+            body {
+                background: radial-gradient(circle at 20% 20%, #1e293b, #0f172a 55%, #020617);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hey, ich bin Niklas 👋</h1>
+        <p>
+            Entwickler, Musikliebhaber und leidenschaftlicher Lerner. Ich baue digitale Erlebnisse
+            und teile meine Reise in die Tech-Welt – vom ersten Code-Schnipsel bis zu kreativen Side-Projects.
+        </p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Über mich</h2>
             <p>
-                Ich liebe es einfach mal so sachen zu wiederholen.
+                Ich komme aus dem hohen Norden und liebe es, Herausforderungen mit Neugierde und einer Portion Humor
+                anzugehen. Wenn ich nicht gerade programmiere, findest du mich bei gutem Kaffee, auf dem Longboard oder
+                beim Tüfteln an neuen Ideen.
             </p>
+            <p>
+                Mein Motto: <span class="highlight">„Lernen, teilen, wachsen.“</span> Deshalb dokumentiere ich meinen Weg und
+                erzähle offen über Erfolge, Umwege und alles dazwischen.
+            </p>
+        </section>
+
+        <section>
             <h2>Was ich gerade mache</h2>
+            <ul>
+                <li>Baue meinen persönlichen Blog als Ort für Ideen und Tutorials.</li>
+                <li>Experimentiere mit modernen Frontend-Frameworks und Design-Systemen.</li>
+                <li>Vertiefe mich in Themen rund um UX Writing und Accessibility.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Skills & Werkzeuge</h2>
+            <ul>
+                <li>Sprachen: TypeScript, JavaScript, Python, Rust (in progress).</li>
+                <li>Frameworks: React, Astro, Next.js.</li>
+                <li>Tools: Git, VS Code, Figma, Notion.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Kontakt</h2>
             <p>
-                Baue meinen Blog
+                Lust auf einen Austausch oder ein gemeinsames Projekt? Schreib mir gern eine Nachricht:
             </p>
-        
-    </body>
+            <a class="cta" href="mailto:hallo@niklas.dev">
+                hallo@niklas.dev
+                <span>→</span>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        © <span id="year"></span> Niklas. Gebaut mit ❤️ und einer Prise Neugier.
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
 </html>
