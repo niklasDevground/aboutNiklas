@@ -32,38 +32,46 @@
         }
 
         header {
-            padding: 2.75rem 1.5rem 2rem;
+            padding: 3.5rem 1.5rem 2rem;
             text-align: center;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
             align-items: center;
+            position: relative;
         }
 
         .site-nav {
+            position: absolute;
+            top: 1.4rem;
+            right: clamp(1rem, 4vw, 2rem);
             display: inline-flex;
-            gap: 0.75rem;
-            padding: 0.45rem 0.85rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 12px 28px rgba(31, 41, 51, 0.12);
+            gap: 1rem;
+            font-size: 0.95rem;
         }
 
         .site-nav a {
             text-decoration: none;
-            font-weight: 600;
-            color: var(--accent);
-            padding: 0.35rem 0.8rem;
-            border-radius: 999px;
-            transition: background 150ms ease, color 150ms ease;
+            font-weight: 500;
+            color: rgba(31, 41, 51, 0.75);
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid transparent;
+            transition: color 150ms ease, border-color 150ms ease;
         }
 
         .site-nav a:hover,
         .site-nav a:focus-visible,
         .site-nav a[aria-current="page"] {
-            background: rgba(37, 99, 235, 0.18);
             color: var(--text);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .site-nav {
+                position: static;
+                order: -1;
+                margin-bottom: 0.5rem;
+            }
         }
 
         header h1 {
@@ -183,6 +191,16 @@
                 background: radial-gradient(circle at 15% 15%, #1e293b, #0f172a 55%, #020617);
             }
 
+            .site-nav a {
+                color: rgba(226, 232, 240, 0.7);
+            }
+
+            .site-nav a:hover,
+            .site-nav a:focus-visible,
+            .site-nav a[aria-current="page"] {
+                color: var(--text);
+            }
+
             .card {
                 background: rgba(96, 165, 250, 0.14);
             }
@@ -199,98 +217,97 @@
             <a href="index.html">Start</a>
             <a href="projects.html" aria-current="page">Projekte</a>
         </nav>
-        <h1>Weitere Projekte &amp; Engagement</h1>
+        <h1>Private Projekte &amp; Experimente</h1>
         <p>
-            Ergänzend zur Startseite sammle ich hier Kundenprojekte, Automatisierungen und Community-Arbeit, die meinen Weg
-            geprägt haben. Jede Station zeigt, wie ich Verantwortung übernehme, Prozesse verschlanke und Erlebnisse für
-            Nutzer:innen schaffe.
+            Neben meiner Arbeit bei Schneider &amp; Cie. AG tüftele ich gerne an eigenen Ideen. Hier findest du persönliche
+            Web-, Automatisierungs- und KI-Projekte, bei denen ich frei gestalten und ausprobieren kann.
         </p>
     </header>
 
     <main>
         <section>
-            <h2>Schneider &amp; Cie. AG · Lobster Ökosystem</h2>
+            <h2>Web &amp; Produktideen</h2>
             <div class="card-grid">
                 <article class="card">
-                    <h3>Kundenportal als Self-Service-Drehscheibe</h3>
+                    <h3>aboutNiklas.ch</h3>
                     <div class="meta">
-                        <span>Stack: Lobster Pro, Lobster Data</span>
-                        <span>Fokus: UX, Sicherheit</span>
+                        <span>Stack: HTML, CSS, leichte JS</span>
+                        <span>Fokus: Storytelling</span>
                     </div>
                     <ul>
-                        <li>Konzeption eines Portals, das Kund:innen statusrelevante Informationen in Echtzeit bereitstellt.</li>
-                        <li>Einführung rollenbasierter Bereiche, damit jede Zielgruppe genau die passenden Funktionen sieht.</li>
-                        <li>Nahtlose Authentifizierung und Monitoring, um Support-Anfragen nachhaltig zu reduzieren.</li>
+                        <li>Relaunch meiner persönlichen Webseite als lebendiges Portfolio und Kontaktpunkt.</li>
+                        <li>Glas-Effekt-UI, kompakte Cards und ein modularer Aufbau für schnelle Updates.</li>
+                        <li>Barrierearme Struktur mit klaren Flows zu Projekten und Kontaktmöglichkeiten.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>Schnittstellen für Partner &amp; Lieferketten</h3>
+                    <h3>ClubConnect</h3>
                     <div class="meta">
-                        <span>Stack: Lobster Data, REST</span>
-                        <span>Fokus: Integrationen</span>
+                        <span>Stack: Astro, Tailwind</span>
+                        <span>Fokus: Community</span>
                     </div>
                     <ul>
-                        <li>Aufbau zuverlässiger Daten-Pipelines, die Bestände, Aufträge und Statusmeldungen synchron halten.</li>
-                        <li>Automatisierte Validierungen und Alerts sorgen für proaktive Fehlererkennung.</li>
-                        <li>Technische Dokumentation &amp; Enablement, damit Stakeholder neue Integrationen schneller realisieren.</li>
+                        <li>Privates Portal, das Trainingspläne, Court-Buchungen und News für meinen Tennisverein bündelt.</li>
+                        <li>Headless-CMS-Anbindung für einfache Content-Pflege durch das Vorstandsteam.</li>
+                        <li>Responsive Komponentenbibliothek, die Events, Ranglisten und Mediengalerien abbildet.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>Automatisierungs-Launcher für interne Teams</h3>
+                    <h3>Automation Playground</h3>
                     <div class="meta">
-                        <span>Stack: Lobster Pro, PowerShell</span>
-                        <span>Fokus: Prozessdesign</span>
+                        <span>Stack: Python, FastAPI</span>
+                        <span>Fokus: Prozessflows</span>
                     </div>
                     <ul>
-                        <li>Self-Service-Flows, die Kolleg:innen mit wenigen Eingaben direkt starten können.</li>
-                        <li>Logging- und Feedback-Schleifen zur kontinuierlichen Optimierung.</li>
-                        <li>Schulungskonzepte, die den Einstieg in neue Tools erleichtern.</li>
+                        <li>Sandbox für wiederkehrende Aufgaben wie Report-Generierung und Datenbereinigung.</li>
+                        <li>Konfigurierbare Trigger (Webhook, Zeitpläne) und Statusübersichten via schlankem UI.</li>
+                        <li>Erprobungsfeld für KI-gestützte Eingabevalidierungen und Textzusammenfassungen.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>KI-gestützte Use-Case-Scouting</h3>
+                    <h3>Habit &amp; Energy Tracker</h3>
                     <div class="meta">
-                        <span>Stack: Python, OpenAI APIs</span>
-                        <span>Fokus: Exploration</span>
+                        <span>Stack: SwiftUI, HealthKit</span>
+                        <span>Fokus: Self-Tracking</span>
                     </div>
                     <ul>
-                        <li>Analyse wiederkehrender Aufgaben, um Potenziale für Machine-Learning-Assistenz zu identifizieren.</li>
-                        <li>Prototypische Chat-Workflows, die Lobster-Daten kombinieren und Antworten in natürlicher Sprache liefern.</li>
-                        <li>Roadmap, wie erfolgreiche Prototypen in die Linienorganisation überführt werden können.</li>
+                        <li>iOS-App, die Schlaf, Training und Fokuszeiten mit persönlichen KPIs verbindet.</li>
+                        <li>Custom-Widgets und Kurzbefehle, um Tagesziele direkt vom Homescreen anzupassen.</li>
+                        <li>Exportfunktion nach Obsidian für Wochenrückblicke und Lernnotizen.</li>
                     </ul>
                 </article>
             </div>
         </section>
 
         <section>
-            <h2>Frühere Stationen &amp; Community</h2>
+            <h2>KI-Experimente &amp; Ideenlabor</h2>
             <div class="card-grid">
                 <article class="card">
-                    <h3>Configurator Services bei Vitra</h3>
+                    <h3>PromptHub Basel</h3>
                     <div class="meta">
-                        <span>Stack: C#, Java</span>
-                        <span>Fokus: Automatisierung</span>
+                        <span>Stack: Next.js, OpenAI APIs</span>
+                        <span>Fokus: Wissensaustausch</span>
                     </div>
                     <ul>
-                        <li>Automatisierung von OFML-Anfragen und Update-Prozessen für internationale Rollouts.</li>
-                        <li>Lizenz-Monitoring mit Dashboards zur transparenten Nutzungsauswertung.</li>
-                        <li>Konzept &amp; Umsetzung von Kampagnen-Registerseiten.</li>
+                        <li>Private Sammlung getesteter Prompts, die ich in Workshops und Lunch-&amp;-Learns ausprobiere.</li>
+                        <li>Tagging-System mit Qualitätsbewertungen, um passende Use-Cases schnell zu finden.</li>
+                        <li>Sharing-Modus, der Kolleg:innen eigene Prompt-Varianten beisteuern lässt.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>Webmaster &amp; Vereinsarbeit</h3>
+                    <h3>DocuBot für Projekt-Setups</h3>
                     <div class="meta">
-                        <span>Stack: HTML, CSS, CMS</span>
-                        <span>Fokus: Ehrenamt</span>
+                        <span>Stack: LangChain, Pinecone</span>
+                        <span>Fokus: Wissensmanagement</span>
                     </div>
                     <ul>
-                        <li>Planung, Pflege und Weiterentwicklung lokaler Tennis-Webseiten samt Buchungsprozessen.</li>
-                        <li>Content-Strategie und Foto-/Videoaufbereitung für Vereinskommunikation.</li>
-                        <li>Support für Events und Turniere inklusive digitaler Anmeldungen.</li>
+                        <li>Assistent, der Projekt-Dokumentationen durchsucht und Antworten mit Quellen belegt.</li>
+                        <li>CLI- und Web-Interface für schnelle Q&amp;A während der Entwicklung.</li>
+                        <li>Experimentiert mit Guardrails, damit sensible Daten geschützt bleiben.</li>
                     </ul>
                 </article>
             </div>
-            <a class="cta" href="mailto:niklas.henniger@outlook.com">Lass uns über neue Projekte sprechen →</a>
+            <a class="cta" href="mailto:niklas.henniger@outlook.com">Lass uns über gemeinsame Ideen sprechen →</a>
         </section>
     </main>
 
