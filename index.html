@@ -30,7 +30,7 @@
         }
 
         header {
-            padding: 4rem 1.5rem 2rem;
+            padding: 3.25rem 1.5rem 1.5rem;
             text-align: center;
         }
 
@@ -48,25 +48,26 @@
         }
 
         main {
-            width: min(1080px, 92vw);
-            margin: 0 auto 4rem;
+            width: min(1120px, 94vw);
+            margin: 0 auto 3rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.75rem;
+            grid-auto-flow: dense;
         }
 
         section {
             background: var(--card-bg);
-            border-radius: 22px;
-            padding: 2.25rem;
-            backdrop-filter: blur(14px);
-            box-shadow: var(--shadow);
+            border-radius: 18px;
+            padding: 1.7rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 16px 36px rgba(31, 41, 51, 0.12);
             transition: transform 150ms ease, box-shadow 150ms ease;
         }
 
         section:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 28px 60px rgba(31, 41, 51, 0.22);
+            transform: translateY(-4px);
+            box-shadow: 0 22px 44px rgba(31, 41, 51, 0.18);
         }
 
         h2 {
@@ -96,8 +97,8 @@
 
         .timeline li {
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 1.8rem;
+            padding-left: 1.3rem;
+            margin-bottom: 1.35rem;
         }
 
         .timeline li::before {
@@ -105,11 +106,11 @@
             position: absolute;
             left: -0.65rem;
             top: 0.25rem;
-            width: 0.85rem;
-            height: 0.85rem;
+            width: 0.75rem;
+            height: 0.75rem;
             border-radius: 50%;
             background: var(--accent);
-            box-shadow: 0 0 0 6px var(--accent-soft);
+            box-shadow: 0 0 0 5px var(--accent-soft);
         }
 
         .timeline h3 {
@@ -124,58 +125,161 @@
             color: rgba(31, 41, 51, 0.75);
         }
 
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.25rem;
+        .experience-grid {
+            display: grid;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
         }
 
-        .profile-card {
-            padding: 0;
+        @media (min-width: 900px) {
+            .experience-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .experience-item {
+            background: rgba(37, 99, 235, 0.12);
+            border-radius: 16px;
+            padding: 1.3rem 1.5rem 1.4rem;
+            position: relative;
             overflow: hidden;
         }
 
-        .profile-card figure {
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            border: 1px solid rgba(37, 99, 235, 0.22);
+            pointer-events: none;
+        }
+
+        .experience-item h3 {
+            margin: 0;
+            font-size: 1.15rem;
+        }
+
+        .experience-item span {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: rgba(31, 41, 51, 0.75);
+        }
+
+        .experience-item ul {
+            margin: 0.9rem 0 0;
+            padding-left: 1.1rem;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 1rem;
+        }
+
+        .intro-card {
+            padding: 0;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            overflow: hidden;
+        }
+
+        @media (min-width: 880px) {
+            .intro-card {
+                grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+            }
+        }
+
+        @media (max-width: 879px) {
+            .intro-card figure {
+                order: -1;
+            }
+        }
+
+        .intro-copy {
+            padding: 2rem 2rem 1.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        .intro-copy h2 {
+            margin: 0;
+            font-size: 1.65rem;
+        }
+
+        .intro-copy p {
             margin: 0;
         }
 
-        .profile-card img {
+        .intro-card figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(160deg, rgba(37, 99, 235, 0.1), rgba(147, 197, 253, 0.28));
+        }
+
+        .intro-card img {
             width: 100%;
             display: block;
-            aspect-ratio: 4 / 5;
+            flex: 1 1 60%;
+            min-height: 280px;
             object-fit: cover;
         }
 
-        .profile-card figcaption {
-            padding: 1.9rem 2.25rem 2.25rem;
+        @media (max-width: 600px) {
+            .intro-card img {
+                min-height: 220px;
+            }
         }
 
-        .profile-card p {
-            margin-bottom: 0.75rem;
+        .intro-card figcaption {
+            padding: 1.6rem 1.9rem 1.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
-        .profile-card small {
-            display: inline-block;
-            margin-top: 0.75rem;
+        .intro-card figcaption h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .intro-card figcaption p {
+            margin: 0;
+        }
+
+        .intro-card figcaption small {
             font-size: 0.8rem;
             opacity: 0.7;
         }
 
         .badge {
-            padding: 0.45rem 0.85rem;
+            padding: 0.35rem 0.75rem;
             border-radius: 999px;
             background: rgba(37, 99, 235, 0.12);
             color: var(--accent);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 0.01em;
+        }
+
+        .span-2 {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 960px) {
+            .span-2 {
+                grid-column: 1 / -1;
+            }
         }
 
         .contact-grid {
             display: grid;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 0.85rem;
+            margin-top: 1.25rem;
         }
 
         .contact-item {
@@ -226,7 +330,7 @@
 
         footer {
             text-align: center;
-            padding: 2rem 1.5rem 3rem;
+            padding: 1.75rem 1.5rem 2.5rem;
             font-size: 0.9rem;
         }
 
@@ -247,6 +351,22 @@
             .timeline span {
                 color: rgba(226, 232, 240, 0.75);
             }
+
+            .intro-card figure {
+                background: linear-gradient(160deg, rgba(96, 165, 250, 0.18), rgba(15, 23, 42, 0.6));
+            }
+
+            .experience-item {
+                background: rgba(96, 165, 250, 0.14);
+            }
+
+            .experience-item::before {
+                border-color: rgba(96, 165, 250, 0.35);
+            }
+
+            .experience-item span {
+                color: rgba(226, 232, 240, 0.75);
+            }
         }
     </style>
 </head>
@@ -260,43 +380,42 @@
     </header>
 
     <main>
-        <section class="profile-card" aria-label="Portrait">
+        <section class="intro-card span-2" aria-label="Portrait und Über mich">
+            <div class="intro-copy">
+                <h2>Über mich</h2>
+                <p>
+                    Ich liebe es, Strukturen zu schaffen, die Menschen den Arbeitsalltag erleichtern. Bei Schneider &amp; Cie. AG gestalte ich
+                    digitale Produkte mit Lobster Pro und Lobster Data – vom Kundenportal über integrationsstarke Schnittstellen bis hin zu
+                    automatisierten Workflows, die Kolleg:innen mit wenigen Eingaben selbst anstoßen können.
+                </p>
+                <p>
+                    Geboren 1999 und tief im Dreiländereck verwurzelt, verbringe ich meine Freizeit gerne auf dem Tennisplatz oder beim
+                    Konzipieren neuer Webideen. Mein Motto: <span class="highlight">„Verstehen, verbessern, teilen.“</span> Aktuell tauche ich
+                    immer tiefer in KI-Anwendungen ein, um diese Expertise Schritt für Schritt ins Unternehmen zu tragen.
+                </p>
+                <div class="badge-list" aria-label="Kurzinformationen">
+                    <span class="badge">Geburtstag: 20.01.1999</span>
+                    <span class="badge">Basel-Landschaft, Schweiz</span>
+                    <span class="badge">Deutsch · Englisch (C1)</span>
+                </div>
+            </div>
             <figure>
                 <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=800&q=80" alt="Portrait-Platzhalter" />
                 <figcaption>
-                    <h2>Dein zukünftiges Portrait</h2>
+                    <h3>Dein zukünftiges Portrait</h3>
                     <p>
-                        Hier kannst du später ganz einfach ein Foto von dir ergänzen – idealerweise im Hochformat. So erhält deine
-                        Landingpage ein noch persönlicheres Gesicht.
+                        Hier kannst du später ganz einfach ein Foto von dir ergänzen – idealerweise im Hochformat. So erhält deine Landingpage
+                        ein noch persönlicheres Gesicht.
                     </p>
                     <small>Tipp: Ersetze die Bild-URL durch dein eigenes Foto, sobald du bereit bist.</small>
                 </figcaption>
             </figure>
         </section>
 
-        <section>
-            <h2>Über mich</h2>
-            <p>
-                Ich liebe es, Strukturen zu schaffen, die Menschen den Arbeitsalltag erleichtern. Bei Schneider &amp; Cie. AG gestalte ich
-                digitale Produkte mit Lobster Pro und Lobster Data – vom Kundenportal über integrationsstarke Schnittstellen bis hin zu
-                automatisierten Workflows, die Kolleg:innen mit wenigen Eingaben selbst anstoßen können.
-            </p>
-            <p>
-                Geboren 1999 und tief im Dreiländereck verwurzelt, verbringe ich meine Freizeit gerne auf dem Tennisplatz oder beim
-                Konzipieren neuer Webideen. Mein Motto: <span class="highlight">„Verstehen, verbessern, teilen.“</span> Aktuell tauche ich
-                immer tiefer in KI-Anwendungen ein, um diese Expertise Schritt für Schritt ins Unternehmen zu tragen.
-            </p>
-            <div class="badge-list" aria-label="Kurzinformationen">
-                <span class="badge">Geburtstag: 20.01.1999</span>
-                <span class="badge">Basel-Landschaft, Schweiz</span>
-                <span class="badge">Deutsch · Englisch (C1)</span>
-            </div>
-        </section>
-
-        <section>
+        <section class="span-2">
             <h2>Berufserfahrung</h2>
-            <ul class="timeline">
-                <li>
+            <div class="experience-grid">
+                <article class="experience-item">
                     <h3>Software Engineer Lobster Solutions</h3>
                     <span>Schneider &amp; Cie. AG, Basel · seit 05/2022</span>
                     <ul>
@@ -304,8 +423,8 @@
                         <li>Implementierung von Schnittstellen, die Kund:innen und Partnern Echtzeitdaten bereitstellen.</li>
                         <li>Automatisierung interner Prozesse sowie Self-Service-Flows, die User mit ihrem Input starten können.</li>
                     </ul>
-                </li>
-                <li>
+                </article>
+                <article class="experience-item">
                     <h3>Software Engineer, Configurator Services</h3>
                     <span>Vitra IT Services GmbH · 11/2021 – 04/2022</span>
                     <ul>
@@ -313,15 +432,15 @@
                         <li>Entwicklung eines Lizenz-Auswertungstools in Java und C#.</li>
                         <li>Gestaltung von Register-Pages für internationale Kampagnen.</li>
                     </ul>
-                </li>
-                <li>
+                </article>
+                <article class="experience-item">
                     <h3>Duales Studium Informatik (nicht abgeschlossen)</h3>
                     <span>Vitra IT Services GmbH × DHBW Lörrach · 09/2020 – 10/2021</span>
                     <ul>
                         <li>Praxissemester mit Fokus auf Automatisierungs-Tools und OFML-Anfragen.</li>
                     </ul>
-                </li>
-                <li>
+                </article>
+                <article class="experience-item">
                     <h3>Ausbildung Fachinformatiker Systemintegration</h3>
                     <span>Vitra IT Services GmbH · 07/2017 – 08/2020</span>
                     <ul>
@@ -329,8 +448,8 @@
                         <li>3rd-Level-Clientsupport sowie Betreuung von Webseiten und Wissensdatenbanken.</li>
                         <li>Programmierung von C#- und Java-Anwendungen sowie Netzwerkadministration.</li>
                     </ul>
-                </li>
-            </ul>
+                </article>
+            </div>
         </section>
 
         <section>
