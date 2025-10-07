@@ -131,6 +131,37 @@
             margin-top: 1.25rem;
         }
 
+        .profile-card {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .profile-card figure {
+            margin: 0;
+        }
+
+        .profile-card img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+        }
+
+        .profile-card figcaption {
+            padding: 1.9rem 2.25rem 2.25rem;
+        }
+
+        .profile-card p {
+            margin-bottom: 0.75rem;
+        }
+
+        .profile-card small {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
         .badge {
             padding: 0.45rem 0.85rem;
             border-radius: 999px;
@@ -223,26 +254,41 @@
     <header>
         <h1>Hey, ich bin Niklas Henniger 👋</h1>
         <p>
-            Software Engineer aus Grenzach-Wyhlen mit einem Herz für clevere Automatisierungen und nutzerzentrierte Lösungen.
-            Ich kombiniere praxisnahe Erfahrung aus Ausbildung, Studium und Beruf, um komplexe Prozesse greifbar und effizient zu machen.
+            Software Engineer aus dem Kanton Basel-Landschaft mit einem Herz für clevere Automatisierungen und nutzerzentrierte Lösungen.
+            Bei Schneider &amp; Cie. AG in Basel verbinde ich Lobster Pro und Lobster Data zu robusten Kundenportalen, Schnittstellen und smarten Prozessen.
         </p>
     </header>
 
     <main>
+        <section class="profile-card" aria-label="Portrait">
+            <figure>
+                <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=800&q=80" alt="Portrait-Platzhalter" />
+                <figcaption>
+                    <h2>Dein zukünftiges Portrait</h2>
+                    <p>
+                        Hier kannst du später ganz einfach ein Foto von dir ergänzen – idealerweise im Hochformat. So erhält deine
+                        Landingpage ein noch persönlicheres Gesicht.
+                    </p>
+                    <small>Tipp: Ersetze die Bild-URL durch dein eigenes Foto, sobald du bereit bist.</small>
+                </figcaption>
+            </figure>
+        </section>
+
         <section>
             <h2>Über mich</h2>
             <p>
-                Ich liebe es, Strukturen zu schaffen, die Menschen den Arbeitsalltag erleichtern. Bei Vitra IT Services durfte ich in
-                unterschiedlichen Rollen Verantwortung übernehmen – vom Rollout großer Windows-Projekte bis zur Entwicklung
-                maßgeschneiderter Tools in C# und Java.
+                Ich liebe es, Strukturen zu schaffen, die Menschen den Arbeitsalltag erleichtern. Bei Schneider &amp; Cie. AG gestalte ich
+                digitale Produkte mit Lobster Pro und Lobster Data – vom Kundenportal über integrationsstarke Schnittstellen bis hin zu
+                automatisierten Workflows, die Kolleg:innen mit wenigen Eingaben selbst anstoßen können.
             </p>
             <p>
                 Geboren 1999 und tief im Dreiländereck verwurzelt, verbringe ich meine Freizeit gerne auf dem Tennisplatz oder beim
-                Konzipieren neuer Webideen. Mein Motto: <span class="highlight">„Verstehen, verbessern, teilen.“</span>
+                Konzipieren neuer Webideen. Mein Motto: <span class="highlight">„Verstehen, verbessern, teilen.“</span> Aktuell tauche ich
+                immer tiefer in KI-Anwendungen ein, um diese Expertise Schritt für Schritt ins Unternehmen zu tragen.
             </p>
             <div class="badge-list" aria-label="Kurzinformationen">
                 <span class="badge">Geburtstag: 20.01.1999</span>
-                <span class="badge">Grenzach-Wyhlen, Deutschland</span>
+                <span class="badge">Basel-Landschaft, Schweiz</span>
                 <span class="badge">Deutsch · Englisch (C1)</span>
             </div>
         </section>
@@ -250,6 +296,15 @@
         <section>
             <h2>Berufserfahrung</h2>
             <ul class="timeline">
+                <li>
+                    <h3>Software Engineer Lobster Solutions</h3>
+                    <span>Schneider &amp; Cie. AG, Basel · seit 05/2022</span>
+                    <ul>
+                        <li>Entwicklung und Betrieb des Kundenportals mit Lobster Pro und Lobster Data.</li>
+                        <li>Implementierung von Schnittstellen, die Kund:innen und Partnern Echtzeitdaten bereitstellen.</li>
+                        <li>Automatisierung interner Prozesse sowie Self-Service-Flows, die User mit ihrem Input starten können.</li>
+                    </ul>
+                </li>
                 <li>
                     <h3>Software Engineer, Configurator Services</h3>
                     <span>Vitra IT Services GmbH · 11/2021 – 04/2022</span>
@@ -260,11 +315,10 @@
                     </ul>
                 </li>
                 <li>
-                    <h3>Duales Studium Informatik</h3>
+                    <h3>Duales Studium Informatik (nicht abgeschlossen)</h3>
                     <span>Vitra IT Services GmbH × DHBW Lörrach · 09/2020 – 10/2021</span>
                     <ul>
-                        <li>Generierung von Montagezeichnungen und Automatisierung interner Prozesse.</li>
-                        <li>Support bei OFML-Anfragen und Implementierung von Tools für die Fachbereiche.</li>
+                        <li>Praxissemester mit Fokus auf Automatisierungs-Tools und OFML-Anfragen.</li>
                     </ul>
                 </li>
                 <li>
@@ -283,7 +337,7 @@
             <h2>Ausbildung</h2>
             <ul class="timeline">
                 <li>
-                    <h3>Bachelor of Arts – Informatik (ohne Abschluss)</h3>
+                    <h3>Duales Studium Informatik (ohne Abschluss)</h3>
                     <span>DHBW Lörrach · 2020 – 2021</span>
                 </li>
                 <li>
@@ -333,20 +387,33 @@
         </section>
 
         <section>
+            <h2>Aktueller Fokus</h2>
+            <p>
+                Mit Blick auf das kommende Jahr konzentriere ich mich darauf, KI-Initiativen bei Schneider &amp; Cie. greifbar zu machen:
+                Use-Cases identifizieren, Prototypen bauen und Teams beim Einsatz unterstützen.
+            </p>
+            <ul>
+                <li>Evaluierung von KI-gestützten Automatisierungen entlang bestehender Lobster-Prozesse.</li>
+                <li>Workshops und Wissensaufbau rund um verantwortungsvollen KI-Einsatz.</li>
+                <li>Proof-of-Concepts, die Mehrwert schnell sichtbar machen.</li>
+            </ul>
+        </section>
+
+        <section>
             <h2>Kontakt</h2>
             <p>Lass uns sprechen – egal ob zu spannenden Projekten, Automatisierungsideen oder einem Match auf dem Tennisplatz.</p>
             <div class="contact-grid">
                 <div class="contact-item">
                     📧
-                    <a class="cta" href="mailto:niklas.henniger@outlook.de">niklas.henniger@outlook.de <span>→</span></a>
+                    <a class="cta" href="mailto:niklas.henniger@outlook.com">niklas.henniger@outlook.com <span>→</span></a>
                 </div>
                 <div class="contact-item">
                     📞
-                    <span>+49 176 41562651</span>
+                    <span>+41 78 255 13 66</span>
                 </div>
                 <div class="contact-item">
                     📍
-                    <span>Markgrafenstraße 40b · 79639 Grenzach-Wyhlen</span>
+                    <span>Kanton Basel-Landschaft, Schweiz</span>
                 </div>
             </div>
         </section>
