@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projekte · Niklas Henniger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #f5f5f5;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --text: #1f2933;
+            --accent: #2563eb;
+            --accent-soft: rgba(37, 99, 235, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #c7d2fe, #bfdbfe, #bbf7d0);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 2.75rem 1.5rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .site-nav {
+            display: inline-flex;
+            gap: 0.75rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 28px rgba(31, 41, 51, 0.12);
+        }
+
+        .site-nav a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--accent);
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            transition: background 150ms ease, color 150ms ease;
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible,
+        .site-nav a[aria-current="page"] {
+            background: rgba(37, 99, 235, 0.18);
+            color: var(--text);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.3rem, 5vw, 3.3rem);
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            margin: 0;
+            max-width: 68ch;
+            font-size: 1.1rem;
+            line-height: 1.75;
+        }
+
+        main {
+            width: min(1100px, 94vw);
+            margin: 0 auto 3rem;
+            display: grid;
+            gap: 1.8rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 38px rgba(31, 41, 51, 0.14);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.55rem;
+        }
+
+        p {
+            line-height: 1.7;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 1.35rem;
+        }
+
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 18px;
+            padding: 1.4rem 1.6rem 1.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            border: 1px solid rgba(37, 99, 235, 0.22);
+            pointer-events: none;
+        }
+
+        .card h3 {
+            margin: 0 0 0.6rem;
+            font-size: 1.2rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem 0.6rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: rgba(31, 41, 51, 0.75);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 1.15rem;
+        }
+
+        li + li {
+            margin-top: 0.5rem;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 1.35rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.8rem 1.5rem 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --card-bg: rgba(15, 23, 42, 0.85);
+                --text: #e2e8f0;
+                --accent: #60a5fa;
+                --accent-soft: rgba(96, 165, 250, 0.24);
+            }
+
+            body {
+                background: radial-gradient(circle at 15% 15%, #1e293b, #0f172a 55%, #020617);
+            }
+
+            .card {
+                background: rgba(96, 165, 250, 0.14);
+            }
+
+            .meta {
+                color: rgba(226, 232, 240, 0.72);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="index.html">Start</a>
+            <a href="projects.html" aria-current="page">Projekte</a>
+        </nav>
+        <h1>Weitere Projekte &amp; Engagement</h1>
+        <p>
+            Ergänzend zur Startseite sammle ich hier Kundenprojekte, Automatisierungen und Community-Arbeit, die meinen Weg
+            geprägt haben. Jede Station zeigt, wie ich Verantwortung übernehme, Prozesse verschlanke und Erlebnisse für
+            Nutzer:innen schaffe.
+        </p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Schneider &amp; Cie. AG · Lobster Ökosystem</h2>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Kundenportal als Self-Service-Drehscheibe</h3>
+                    <div class="meta">
+                        <span>Stack: Lobster Pro, Lobster Data</span>
+                        <span>Fokus: UX, Sicherheit</span>
+                    </div>
+                    <ul>
+                        <li>Konzeption eines Portals, das Kund:innen statusrelevante Informationen in Echtzeit bereitstellt.</li>
+                        <li>Einführung rollenbasierter Bereiche, damit jede Zielgruppe genau die passenden Funktionen sieht.</li>
+                        <li>Nahtlose Authentifizierung und Monitoring, um Support-Anfragen nachhaltig zu reduzieren.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Schnittstellen für Partner &amp; Lieferketten</h3>
+                    <div class="meta">
+                        <span>Stack: Lobster Data, REST</span>
+                        <span>Fokus: Integrationen</span>
+                    </div>
+                    <ul>
+                        <li>Aufbau zuverlässiger Daten-Pipelines, die Bestände, Aufträge und Statusmeldungen synchron halten.</li>
+                        <li>Automatisierte Validierungen und Alerts sorgen für proaktive Fehlererkennung.</li>
+                        <li>Technische Dokumentation &amp; Enablement, damit Stakeholder neue Integrationen schneller realisieren.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Automatisierungs-Launcher für interne Teams</h3>
+                    <div class="meta">
+                        <span>Stack: Lobster Pro, PowerShell</span>
+                        <span>Fokus: Prozessdesign</span>
+                    </div>
+                    <ul>
+                        <li>Self-Service-Flows, die Kolleg:innen mit wenigen Eingaben direkt starten können.</li>
+                        <li>Logging- und Feedback-Schleifen zur kontinuierlichen Optimierung.</li>
+                        <li>Schulungskonzepte, die den Einstieg in neue Tools erleichtern.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>KI-gestützte Use-Case-Scouting</h3>
+                    <div class="meta">
+                        <span>Stack: Python, OpenAI APIs</span>
+                        <span>Fokus: Exploration</span>
+                    </div>
+                    <ul>
+                        <li>Analyse wiederkehrender Aufgaben, um Potenziale für Machine-Learning-Assistenz zu identifizieren.</li>
+                        <li>Prototypische Chat-Workflows, die Lobster-Daten kombinieren und Antworten in natürlicher Sprache liefern.</li>
+                        <li>Roadmap, wie erfolgreiche Prototypen in die Linienorganisation überführt werden können.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>Frühere Stationen &amp; Community</h2>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Configurator Services bei Vitra</h3>
+                    <div class="meta">
+                        <span>Stack: C#, Java</span>
+                        <span>Fokus: Automatisierung</span>
+                    </div>
+                    <ul>
+                        <li>Automatisierung von OFML-Anfragen und Update-Prozessen für internationale Rollouts.</li>
+                        <li>Lizenz-Monitoring mit Dashboards zur transparenten Nutzungsauswertung.</li>
+                        <li>Konzept &amp; Umsetzung von Kampagnen-Registerseiten.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Webmaster &amp; Vereinsarbeit</h3>
+                    <div class="meta">
+                        <span>Stack: HTML, CSS, CMS</span>
+                        <span>Fokus: Ehrenamt</span>
+                    </div>
+                    <ul>
+                        <li>Planung, Pflege und Weiterentwicklung lokaler Tennis-Webseiten samt Buchungsprozessen.</li>
+                        <li>Content-Strategie und Foto-/Videoaufbereitung für Vereinskommunikation.</li>
+                        <li>Support für Events und Turniere inklusive digitaler Anmeldungen.</li>
+                    </ul>
+                </article>
+            </div>
+            <a class="cta" href="mailto:niklas.henniger@outlook.com">Lass uns über neue Projekte sprechen →</a>
+        </section>
+    </main>
+
+    <footer>
+        Zurück zur <a href="index.html">Startseite</a> · © <span id="year"></span> Niklas Henniger
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
