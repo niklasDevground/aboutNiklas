@@ -92,25 +92,44 @@
             list-style: none;
             padding: 0;
             margin: 1.5rem 0 0;
-            border-left: 3px solid var(--accent-soft);
+            position: relative;
         }
 
         .timeline li {
             position: relative;
-            padding-left: 1.3rem;
-            margin-bottom: 1.35rem;
+            padding: 0 0 1.45rem 2.35rem;
         }
 
         .timeline li::before {
             content: "";
             position: absolute;
-            left: -0.65rem;
-            top: 0.25rem;
+            left: 0.9rem;
+            top: 0.2rem;
             width: 0.75rem;
             height: 0.75rem;
             border-radius: 50%;
             background: var(--accent);
             box-shadow: 0 0 0 5px var(--accent-soft);
+            transform: translateX(-50%);
+        }
+
+        .timeline li::after {
+            content: "";
+            position: absolute;
+            left: 0.9rem;
+            top: 1.25rem;
+            bottom: -1.2rem;
+            width: 2px;
+            background: var(--accent-soft);
+            transform: translateX(-50%);
+        }
+
+        .timeline li:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline li:last-child::after {
+            content: none;
         }
 
         .timeline h3 {
