@@ -36,6 +36,7 @@ header {
     top: 1.4rem;
     right: clamp(1rem, 4vw, 2rem);
     display: inline-flex;
+    align-items: center;
     gap: 1rem;
     font-size: 0.95rem;
 }
@@ -54,6 +55,27 @@ header {
 .site-nav a[aria-current="page"] {
     color: var(--text);
     border-color: var(--accent);
+}
+
+.lang-toggle {
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--text);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+    background: var(--accent);
+    color: white;
+    border-color: transparent;
 }
 
 @media (max-width: 640px) {

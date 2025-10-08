@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekte · Niklas Henniger</title>
+    <title data-i18n="projects.metaTitle">Projekte · Niklas Henniger</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/projects.css" />
 </head>
-<body>
+<body data-page="projects">
     <header>
-        <nav class="site-nav" aria-label="Hauptnavigation">
-            <a href="../start/">Start</a>
-            <a href="./" aria-current="page">Projekte</a>
+        <nav class="site-nav" aria-label="Hauptnavigation" data-i18n="common.navAriaLabel" data-i18n-attr="aria-label">
+            <a href="../start/" data-i18n="common.navStart">Start</a>
+            <a href="./" aria-current="page" data-i18n="common.navProjects">Projekte</a>
+            <button type="button" class="lang-toggle" data-lang-toggle data-i18n="common.langToggleLabel" data-i18n-attr="aria-label">Sprache wechseln</button>
         </nav>
-        <h1>Private Projekte &amp; Experimente</h1>
-        <p>
+        <h1 data-i18n="projects.headerTitle">Private Projekte &amp; Experimente</h1>
+        <p data-i18n="projects.headerIntro">
             Neben meiner Arbeit bei Schneider &amp; Cie. AG tüftele ich gerne an eigenen Ideen. Hier findest du persönliche
             Web-, Automatisierungs- und KI-Projekte, bei denen ich frei gestalten und ausprobieren kann.
         </p>
@@ -25,51 +26,51 @@
 
     <main>
         <section>
-            <h2>Lieblingsprojekte</h2>
+            <h2 data-i18n="projects.featuredHeading">Lieblingsprojekte</h2>
             <div class="card-grid">
                 <article class="card">
-                    <h3>Erstellung meiner Webseite</h3>
+                    <h3 data-i18n="projects.siteTitle">Erstellung meiner Webseite</h3>
                     <div class="meta">
-                        <span>Stack: HTML, CSS, JavaScript</span>
-                        <span>Fokus: persönliche Marke</span>
+                        <span data-i18n="projects.siteStack">Stack: HTML, CSS, JavaScript</span>
+                        <span data-i18n="projects.siteFocus">Fokus: persönliche Marke</span>
                     </div>
-                    <ul>
+                    <ul data-i18n="projects.siteList">
                         <li>Konzeption eines klaren Storytellings, das meine Stationen und Stärken übersichtlich präsentiert.</li>
                         <li>Designsystem mit wiederverwendbaren Komponenten, damit neue Inhalte im Handumdrehen online sind.</li>
                         <li>Feinschliff bei Performance und Barrierefreiheit, inklusive Lighthouse-Checks und semantischer Struktur.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>Bauen meines eigenen Computers</h3>
+                    <h3 data-i18n="projects.pcTitle">Bauen meines eigenen Computers</h3>
                     <div class="meta">
-                        <span>Stack: Hardware, BIOS-Tuning</span>
-                        <span>Fokus: Custom Setup</span>
+                        <span data-i18n="projects.pcStack">Stack: Hardware, BIOS-Tuning</span>
+                        <span data-i18n="projects.pcFocus">Fokus: Custom Setup</span>
                     </div>
-                    <ul>
+                    <ul data-i18n="projects.pcList">
                         <li>Recherche und Auswahl der Komponenten für ein leises, leistungsstarkes System mit Fokus auf Entwicklung und KI-Workloads.</li>
                         <li>Eigenständige Montage inklusive Kabelmanagement, Temperatur-Optimierung und BIOS-Feinschliff.</li>
                         <li>Dokumentation der Build-Schritte, damit zukünftige Upgrades und Wartungen strukturiert ablaufen.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>On-Prem LLM verwenden inklusive WebUI</h3>
+                    <h3 data-i18n="projects.llmTitle">On-Prem LLM verwenden inklusive WebUI</h3>
                     <div class="meta">
-                        <span>Stack: Docker, GPU-Beschleunigung</span>
-                        <span>Fokus: KI im eigenen Netzwerk</span>
+                        <span data-i18n="projects.llmStack">Stack: Docker, GPU-Beschleunigung</span>
+                        <span data-i18n="projects.llmFocus">Fokus: KI im eigenen Netzwerk</span>
                     </div>
-                    <ul>
+                    <ul data-i18n="projects.llmList">
                         <li>Setup einer lokalen LLM-Instanz mit optimierten Modellen, die sensible Daten im eigenen Netz belässt.</li>
                         <li>Entwicklung einer WebUI mit Rollen, Prompt-Vorlagen und Verlauf, um das Team strukturiert einzubinden.</li>
                         <li>Monitoring von GPU-Auslastung und Antwortqualität, um Modelle gezielt nachzuschärfen.</li>
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>Website für den Tennisclub</h3>
+                    <h3 data-i18n="projects.tennisTitle">Website für den Tennisclub</h3>
                     <div class="meta">
-                        <span>Stack: Astro, Tailwind CSS</span>
-                        <span>Fokus: Vereinskommunikation</span>
+                        <span data-i18n="projects.tennisStack">Stack: Astro, Tailwind CSS</span>
+                        <span data-i18n="projects.tennisFocus">Fokus: Vereinskommunikation</span>
                     </div>
-                    <ul>
+                    <ul data-i18n="projects.tennisList">
                         <li>Informationsarchitektur gestaltet, damit Mitglieder Trainingspläne, Termine und Neuigkeiten schnell finden.</li>
                         <li>Wartungsfreundliches CMS-Setup vorbereitet, sodass das Vorstandsteam Inhalte ohne Entwickler:innenpfad aktualisiert.</li>
                         <li>Fotogalerien und Sponsorenbereiche integriert, um Vereinsleben und Partner sichtbar zu machen.</li>
@@ -79,7 +80,7 @@
         </section>
     </main>
 
-    <footer>
+    <footer data-i18n="projects.footerText">
         Zurück zur <a href="../start/">Startseite</a> · © <span id="year"></span> Niklas Henniger
     </footer>
 
