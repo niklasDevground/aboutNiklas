@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="start.metaTitle">Über Niklas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body data-page="start">
+    <header>
+        <nav class="site-nav" aria-label="Hauptnavigation" data-i18n="common.navAriaLabel" data-i18n-attr="aria-label">
+            <a href="./" aria-current="page" data-i18n="common.navStart">Start</a>
+            <a href="../projekte/" data-i18n="common.navProjects">Projekte</a>
+            <button type="button" class="lang-toggle" data-lang-toggle data-i18n="common.langToggleLabel" data-i18n-attr="aria-label">Sprache wechseln</button>
+        </nav>
+        <h1 data-i18n="start.heroTitle">Hey, ich bin Niklas Henniger 👋</h1>
+        <p data-i18n="start.heroIntro">
+            Software Engineer aus dem Kanton Basel-Landschaft mit einem Herz für clevere Automatisierungen und nutzerzentrierte Lösungen.
+            Bei Schneider &amp; Cie. AG in Basel verbinde ich unterschiedliche Systeme zu robusten Kundenportalen, Schnittstellen und smarten Prozessen.
+        </p>
+    </header>
+
+    <main>
+        <section class="intro-card span-2" aria-label="Portrait und Über mich" data-i18n="start.introAria" data-i18n-attr="aria-label">
+            <div class="intro-copy">
+                <h2 data-i18n="start.aboutHeading">Über mich</h2>
+                <p data-i18n="start.aboutParagraph1">
+                    Ich liebe es, Strukturen zu schaffen, die Menschen den Arbeitsalltag erleichtern. Bei Schneider &amp; Cie. AG gestalte ich
+                    digitale Produkte – vom Kundenportal über integrationsstarke Schnittstellen bis hin zu automatisierten Workflows, die
+                    im Alltag spürbar entlasten.
+                </p>
+                <p data-i18n="start.aboutParagraph2">
+                    Geboren 1999 und tief im Dreiländereck verwurzelt, verbringe ich meine Freizeit gerne auf dem Tennisplatz oder beim
+                    Konzipieren neuer Webideen. Mein Motto: <span class="highlight">„Verstehen, verbessern, teilen.“</span> Aktuell tauche ich
+                    immer tiefer in KI-Anwendungen ein, um diese Expertise Schritt für Schritt ins Unternehmen zu tragen.
+                </p>
+                <div class="badge-list" aria-label="Kurzinformationen">
+                    <span class="badge" data-i18n="start.badgeBirthday">Geburtstag: 20.01.1999</span>
+                    <span class="badge" data-i18n="start.badgeLocation">Basel-Landschaft, Schweiz</span>
+                    <span class="badge" data-i18n="start.badgeLanguages">Deutsch · Englisch (C1)</span>
+                </div>
+            </div>
+            <figure>
+                <img
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    alt="Abstraktes Platzhaltermotiv"
+                    data-i18n="start.portraitAlt"
+                    data-i18n-attr="alt"
+                />
+            </figure>
+        </section>
+
+        <section class="span-2">
+            <h2 data-i18n="start.experienceHeading">Berufserfahrung</h2>
+            <div class="experience-grid">
+                <article class="experience-item">
+                    <h3 data-i18n="start.experience1Title">Software Engineer Lobster Solutions</h3>
+                    <span data-i18n="start.experience1Subheading">Schneider &amp; Cie. AG, Basel · seit 05/2022</span>
+                    <ul data-i18n="start.experience1List">
+                        <li>Entwicklung und Betrieb des Kundenportals mit Lobster Pro und Lobster Data.</li>
+                        <li>Implementierung von Schnittstellen, die Kund:innen und Partnern Echtzeitdaten bereitstellen.</li>
+                        <li>Automatisierung interner Prozesse sowie Self-Service-Flows, die User mit ihrem Input starten können.</li>
+                    </ul>
+                </article>
+                <article class="experience-item">
+                    <h3 data-i18n="start.experience2Title">Software Engineer, Configurator Services</h3>
+                    <span data-i18n="start.experience2Subheading">Vitra IT Services GmbH · 11/2021 – 04/2022</span>
+                    <ul data-i18n="start.experience2List">
+                        <li>Automatisierung von OFML-Anfragen und diversen Update-Prozessen mit C#.</li>
+                        <li>Entwicklung eines Lizenz-Auswertungstools in Java und C#.</li>
+                        <li>Gestaltung von Register-Pages für internationale Kampagnen.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="span-2" aria-labelledby="current-projects">
+            <h2 id="current-projects" data-i18n="start.currentProjectHeading">Aktuelles Projekt</h2>
+            <article class="focus-card">
+                <h3 data-i18n="start.currentProjectTitle">On-Prem LLM mit WebUI</h3>
+                <p data-i18n="start.currentProjectIntro">
+                    Aufbau einer lokalen KI-Plattform, die sensible Informationen sicher hält und dennoch für Kolleg:innen
+                    leicht zugänglich macht. Ziel ist ein zuverlässiger Wissensassistent, der ohne Cloud-Abhängigkeiten
+                    produktiv unterstützt.
+                </p>
+                <ul data-i18n="start.currentProjectList">
+                    <li>Bereitstellung eines performanten LLM-Stacks auf dedizierter Hardware inklusive GPU-Optimierung.</li>
+                    <li>Entwicklung einer schlanken WebUI mit Rollen- und Rechtekonzept für den sicheren Zugriff.</li>
+                    <li>Integration von Unternehmenswissen über Vektordatenbanken und Retrieval-Augmented-Generation.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <h2 data-i18n="start.educationHeading">Ausbildung</h2>
+            <ul class="timeline">
+                <li>
+                    <h3 data-i18n="start.educationItem1Title">Duales Studium Informatik (ohne Abschluss)</h3>
+                    <span data-i18n="start.educationItem1Subtitle">DHBW Lörrach · 2020 – 2021</span>
+                </li>
+                <li>
+                    <h3 data-i18n="start.educationItem2Title">Ausbildung Fachinformatiker Systemintegration</h3>
+                    <span data-i18n="start.educationItem2Subtitle">Vitra IT Services · 2017 – 2020</span>
+                </li>
+                <li>
+                    <h3 data-i18n="start.educationItem3Title">Staatlich geprüfter informations- und kommunikationstechnischer Assistent</h3>
+                    <span data-i18n="start.educationItem3Subtitle">Gewerbeschule Lörrach · 2015 – 2017</span>
+                </li>
+                <li>
+                    <h3 data-i18n="start.educationItem4Title">Fachhochschulreife</h3>
+                    <span data-i18n="start.educationItem4Subtitle">Gewerbeschule Lörrach · 2015 – 2017</span>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-i18n="start.skillsHeading">Skills &amp; Tools</h2>
+            <p data-i18n="start.skillsIntro">Technologien und Methoden, die ich in Projekten einsetze:</p>
+            <div class="badge-list">
+                <span class="badge">C#</span>
+                <span class="badge">Java</span>
+                <span class="badge">HTML · CSS · JavaScript</span>
+                <span class="badge">Swift</span>
+                <span class="badge">SQL</span>
+                <span class="badge">PHP</span>
+                <span class="badge">Python</span>
+                <span class="badge">C++</span>
+                <span class="badge">MS Office</span>
+                <span class="badge">Figma</span>
+                <span class="badge">Jira</span>
+                <span class="badge">Agile Methoden · Scrum</span>
+                <span class="badge">ERM · EPK</span>
+                <span class="badge">Versionsverwaltung</span>
+                <span class="badge">Parallele &amp; OOP Programmierung</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 data-i18n="start.engagementHeading">Engagement &amp; Interessen</h2>
+            <ul data-i18n="start.engagementList">
+                <li>Webmaster für Tennisclub und Tennishalle Grenzach-Wyhlen – Konzeption, Pflege und Support.</li>
+                <li>Tennisspieler seit über 16 Jahren sowie ehemaliges Fußball-Clubmitglied.</li>
+                <li>Begeistert von klaren UI-Konzepten und kontinuierlichem Lernen.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-i18n="start.moreProjectsHeading">Mehr Projekte entdecken</h2>
+            <p data-i18n="start.moreProjectsIntro">
+                Du möchtest tiefer eintauchen? Auf meiner Projektseite sammle ich private Side-Projects, Experimente und
+                Community-Arbeit, die außerhalb meines Berufs entstanden sind.
+            </p>
+            <a class="page-link" href="../projekte/">
+                <span data-i18n="start.moreProjectsLink">
+                    <strong>Zu den Projekten</strong><br />
+                    Sammlung ausgewählter privater Arbeiten, Experimente und Vereinsinitiativen.
+                </span>
+                <span>→</span>
+            </a>
+        </section>
+
+        <section>
+            <h2 data-i18n="start.focusHeading">Aktueller Fokus</h2>
+            <p data-i18n="start.focusIntro">
+                Mit Blick auf das kommende Jahr konzentriere ich mich darauf, KI-Initiativen greifbar zu machen:
+                Use-Cases identifizieren, Prototypen bauen und Teams beim Einsatz unterstützen.
+            </p>
+            <ul data-i18n="start.focusList">
+                <li>Evaluierung von KI-gestützten Automatisierungen entlang bestehender Prozessketten.</li>
+                <li>Workshops und Wissensaufbau rund um verantwortungsvollen KI-Einsatz.</li>
+                <li>Proof-of-Concepts, die Mehrwert schnell sichtbar machen.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-i18n="start.contactHeading">Kontakt</h2>
+            <p data-i18n="start.contactIntro">Lass uns sprechen – egal ob zu spannenden Projekten, Automatisierungsideen oder einem Match auf dem Tennisplatz.</p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    📧
+                    <a class="cta" href="mailto:niklas.henniger@outlook.com">niklas.henniger@outlook.com <span>→</span></a>
+                </div>
+                <div class="contact-item">
+                    📞
+                    <span>+41 78 255 13 66</span>
+                </div>
+                <div class="contact-item">
+                    📍
+                    <span data-i18n="start.contactLocation">Kanton Basel-Landschaft, Schweiz</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span data-i18n="start.footerText">© <span id="year"></span> Niklas. Gebaut mit ❤️ und einer Prise Neugier.</span>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
