@@ -6,5 +6,5 @@
         </linearGradient>
     </defs>
     <rect width="128" height="128" rx="28" fill="url(#bg)" />
-    <text x="50%" y="58%" font-size="78" text-anchor="middle" dominant-baseline="middle">⚙️</text>
+    <text x="50%" y="58%" font-size="78" text-anchor="middle" dominant-baseline="middle">👋</text>
 </svg>
