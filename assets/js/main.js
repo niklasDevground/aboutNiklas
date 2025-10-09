@@ -492,3 +492,68 @@
         mo.observe(footerNode, { childList: true, subtree: true, characterData: true });
     }
 })();
+
+// --- Theme toggle (light/dark) with persistence ---
+(function () {
+    const storageKey = 'preferredTheme';
+
+    function getStoredTheme() {
+        try { return localStorage.getItem(storageKey); } catch { return null; }
+    }
+
+    function storeTheme(theme) {
+        try { localStorage.setItem(storageKey, theme); } catch {}
+    }
+
+    function detectTheme() {
+        const stored = getStoredTheme();
+        if (stored === 'dark' || stored === 'light') return stored;
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+        const t = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        updateToggleUI();
+        return t;
+    }
+
+    function labelByLang() {
+        const lang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+        return lang.startsWith('de') ? 'Theme wechseln' : 'Toggle theme';
+    }
+
+    function updateToggleUI() {
+        const btn = document.querySelector('[data-theme-toggle]');
+        if (!btn) return;
+        const current = document.documentElement.getAttribute('data-theme') || detectTheme();
+        btn.textContent = current === 'dark' ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', labelByLang());
+        btn.setAttribute('title', labelByLang());
+    }
+
+    function init() {
+        const initial = detectTheme();
+        applyTheme(initial);
+        const btn = document.querySelector('[data-theme-toggle]');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const next = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+                const applied = applyTheme(next);
+                storeTheme(applied);
+            });
+        }
+
+        // Keep label in sync when language changes
+        if (window.MutationObserver) {
+            const mo = new MutationObserver(() => updateToggleUI());
+            mo.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
