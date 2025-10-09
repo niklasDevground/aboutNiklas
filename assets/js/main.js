@@ -231,17 +231,14 @@
     }
 })();
 
-// --- Simple Easter egg: Konami-Code hearts + toast ---
+// --- Easter egg: only on triple‑clicking the footer heart ---
 (function () {
-    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-    let buffer = [];
-
     function showEasterEgg() {
         if (!document.body || document.getElementById('ee-overlay')) return;
 
         const name = document.body.dataset ? document.body.dataset.easterName : '';
         const presetMsg = document.body.dataset ? document.body.dataset.easterMessage : '';
-        const message = presetMsg || (name ? `Für ${name} 💖` : 'Für dich 💖');
+        const message = presetMsg || (name ? `Für ${name} 💖` : ''); // no default "Für dich"
 
         const overlay = document.createElement('div');
         overlay.id = 'ee-overlay';
@@ -251,21 +248,24 @@
         overlay.style.zIndex = '2147483646';
         document.body.appendChild(overlay);
 
-        const toast = document.createElement('div');
-        toast.textContent = message;
-        toast.style.position = 'fixed';
-        toast.style.left = '50%';
-        toast.style.bottom = '24px';
-        toast.style.transform = 'translateX(-50%)';
-        toast.style.background = 'rgba(0,0,0,0.78)';
-        toast.style.color = '#fff';
-        toast.style.padding = '10px 14px';
-        toast.style.borderRadius = '12px';
-        toast.style.fontFamily = 'inherit';
-        toast.style.boxShadow = '0 6px 20px rgba(0,0,0,0.25)';
-        toast.style.zIndex = '2147483647';
-        toast.style.userSelect = 'none';
-        document.body.appendChild(toast);
+        if (message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.left = '50%';
+            toast.style.bottom = '24px';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = 'rgba(0,0,0,0.78)';
+            toast.style.color = '#fff';
+            toast.style.padding = '10px 14px';
+            toast.style.borderRadius = '12px';
+            toast.style.fontFamily = 'inherit';
+            toast.style.boxShadow = '0 6px 20px rgba(0,0,0,0.25)';
+            toast.style.zIndex = '2147483647';
+            toast.style.userSelect = 'none';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 5200);
+        }
 
         const durationMs = 5000;
         const start = Date.now();
@@ -295,45 +295,200 @@
         }, 120);
 
         setTimeout(() => {
-            toast.remove();
             overlay.remove();
         }, durationMs + 800);
     }
 
-    function normalizeKey(e) {
-        // Keep arrow keys as-is, letters lowercase
-        if (e.key.length === 1) return e.key.toLowerCase();
-        return e.key;
-    }
-
-    function setupKonami() {
-        window.addEventListener('keydown', (e) => {
-            const key = normalizeKey(e);
-            buffer.push(key);
-            if (buffer.length > konami.length) buffer.shift();
-            const matched = konami.every((k, i) => buffer[i] === (k.length === 1 ? k : k));
-            if (matched) {
-                showEasterEgg();
-                buffer = [];
-            }
-        });
-    }
-
-    function setupTripleClickFallback() {
-        // Bonus trigger: triple-click the footer
+    function ensureHeartWrapper() {
         const footer = document.querySelector('footer');
-        if (!footer) return;
+        if (!footer) return null;
+
+        // Already present?
+        let heartEl = footer.querySelector('[data-footer-heart]');
+        if (heartEl) return heartEl;
+
+        const container = footer.querySelector('span');
+        const heartRegex = /^(\s*)(?:❤️|❤|♥)/;
+
+        if (container && heartRegex.test(container.textContent || '')) {
+            const html = container.innerHTML.replace(heartRegex, `$1<span data-footer-heart role="button" aria-label="Herz" tabindex="0" style="cursor:pointer">❤️</span>`);
+            container.innerHTML = html;
+            return container.querySelector('[data-footer-heart]');
+        }
+
+        // Otherwise, prepend our own heart
+        heartEl = document.createElement('span');
+        heartEl.setAttribute('data-footer-heart', '');
+        heartEl.setAttribute('role', 'button');
+        heartEl.setAttribute('aria-label', 'Herz');
+        heartEl.tabIndex = 0;
+        heartEl.style.cursor = 'pointer';
+        heartEl.textContent = '❤️';
+        if (container) {
+            container.prepend(heartEl, document.createTextNode(' '));
+        } else {
+            footer.prepend(heartEl);
+        }
+        return heartEl;
+    }
+
+    function setupHeartTripleClick() {
+        return; // disabled: use existing footer heart only
+        const heartEl = ensureHeartWrapper();
+        if (!heartEl) return;
+
         let clicks = 0;
-        footer.addEventListener('click', () => {
-            clicks++;
+        let timer = null;
+        const reset = () => { clicks = 0; if (timer) { clearTimeout(timer); timer = null; } };
+
+        const onActivate = () => {
+            clicks += 1;
             if (clicks === 3) {
                 showEasterEgg();
-                clicks = 0;
+                reset();
+                return;
             }
-            setTimeout(() => { clicks = 0; }, 800);
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(reset, 700); // "schnell" Fenster
+        };
+
+        heartEl.addEventListener('click', onActivate);
+        heartEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onActivate();
+            }
         });
     }
 
-    setupKonami();
-    setupTripleClickFallback();
+    setupHeartTripleClick();
+})();
+
+// --- Easter egg binding using existing footer heart only ---
+(function () {
+    function showEasterEgg() {
+        if (!document.body || document.getElementById('ee-overlay')) return;
+
+        const name = document.body.dataset ? document.body.dataset.easterName : '';
+        const presetMsg = document.body.dataset ? document.body.dataset.easterMessage : '';
+        const message = presetMsg || (name ? `Für ${name} 💖` : '');
+
+        const overlay = document.createElement('div');
+        overlay.id = 'ee-overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.inset = '0';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.zIndex = '2147483646';
+        document.body.appendChild(overlay);
+
+        if (message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.left = '50%';
+            toast.style.bottom = '24px';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = 'rgba(0,0,0,0.78)';
+            toast.style.color = '#fff';
+            toast.style.padding = '10px 14px';
+            toast.style.borderRadius = '12px';
+            toast.style.fontFamily = 'inherit';
+            toast.style.boxShadow = '0 6px 20px rgba(0,0,0,0.25)';
+            toast.style.zIndex = '2147483647';
+            toast.style.userSelect = 'none';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 5200);
+        }
+
+        const durationMs = 5000;
+        const start = Date.now();
+        const spawn = () => {
+            if (Date.now() - start > durationMs) return;
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            const size = 16 + Math.floor(Math.random() * 18);
+            const left = Math.random() * 100;
+            const travel = 60 + Math.random() * 25;
+            heart.style.position = 'fixed';
+            heart.style.left = left + 'vw';
+            heart.style.bottom = '-10vh';
+            heart.style.fontSize = size + 'px';
+            heart.style.opacity = '0.95';
+            heart.style.transition = 'transform 3.2s linear, opacity 3.2s linear';
+            heart.style.transform = 'translateY(0)';
+            overlay.appendChild(heart);
+            requestAnimationFrame(() => {
+                heart.style.transform = `translateY(-${travel}vh)`;
+                heart.style.opacity = '0';
+            });
+            setTimeout(() => heart.remove(), 3400);
+            if (Date.now() - start <= durationMs) setTimeout(spawn, 120);
+        };
+        spawn();
+
+        setTimeout(() => overlay.remove(), durationMs + 800);
+    }
+
+    function findAndBindHeart() {
+        const footer = document.querySelector('footer');
+        if (!footer) return;
+        // Find an existing heart character inside the footer and wrap it if needed
+        let heartEl = footer.querySelector('[data-footer-heart]');
+        if (!heartEl) {
+            const tw = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            const re = /[❤️❤♥]/;
+            let node;
+            while ((node = tw.nextNode())) {
+                const t = node.nodeValue || '';
+                const idx = t.search(re);
+                if (idx !== -1) {
+                    const before = document.createTextNode(t.slice(0, idx));
+                    const after = document.createTextNode(t.slice(idx + 1));
+                    heartEl = document.createElement('span');
+                    heartEl.setAttribute('data-footer-heart', '');
+                    heartEl.setAttribute('role', 'button');
+                    heartEl.setAttribute('aria-label', 'Herz');
+                    heartEl.tabIndex = 0;
+                    heartEl.style.cursor = 'pointer';
+                    heartEl.textContent = t[idx];
+                    const parent = node.parentNode;
+                    if (!parent) return;
+                    parent.replaceChild(after, node);
+                    parent.insertBefore(heartEl, after);
+                    parent.insertBefore(before, heartEl);
+                    break;
+                }
+            }
+        }
+
+        if (!heartEl || heartEl.dataset.eeBound) return;
+        heartEl.dataset.eeBound = '1';
+        let clicks = 0;
+        let timer = null;
+        const reset = () => { clicks = 0; if (timer) { clearTimeout(timer); timer = null; } };
+        const onActivate = () => {
+            clicks += 1;
+            if (clicks === 3) {
+                showEasterEgg();
+                reset();
+                return;
+            }
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(reset, 700);
+        };
+        heartEl.addEventListener('click', onActivate);
+        heartEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onActivate(); }
+        });
+    }
+
+    // Initial bind
+    findAndBindHeart();
+
+    // Re-bind on footer content changes (e.g., language toggle)
+    const footerNode = document.querySelector('footer');
+    if (window.MutationObserver && footerNode) {
+        const mo = new MutationObserver(() => findAndBindHeart());
+        mo.observe(footerNode, { childList: true, subtree: true, characterData: true });
+    }
 })();
