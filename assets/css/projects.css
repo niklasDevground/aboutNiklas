@@ -190,6 +190,19 @@ footer {
     font-size: 0.95rem;
 }
 
+/* Sub-grid container for grouped items like games */
+.sub-grid { display: grid; gap: 1rem; }
+@media (min-width: 720px) { .sub-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sub-card {
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 14px;
+    padding: 1rem 1.1rem 1.2rem;
+}
+.sub-card h4 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+
+/* removed game cards from projects; no special hiding needed */
+
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #0f172a;

@@ -465,8 +465,14 @@
         heartEl.dataset.eeBound = '1';
         let clicks = 0;
         let timer = null;
+        let pressedLong = false; // long-press just opened the menu
         const reset = () => { clicks = 0; if (timer) { clearTimeout(timer); timer = null; } };
         const onActivate = () => {
+            if (pressedLong) { // ignore click caused by long-press release
+                pressedLong = false;
+                reset();
+                return;
+            }
             clicks += 1;
             if (clicks === 3) {
                 showEasterEgg();
@@ -480,6 +486,64 @@
         heartEl.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onActivate(); }
         });
+
+        // Hidden games menu: long-press (hold ~1.2s) on the heart
+        let pressTimer = null;
+        const pressDelay = 1200;
+        const showSecretMenu = () => {
+            if (document.getElementById('secret-menu')) return;
+            pressedLong = true;
+            const menu = document.createElement('div');
+            menu.id = 'secret-menu';
+            menu.style.position = 'fixed';
+            menu.style.bottom = '64px';
+            menu.style.left = '50%';
+            menu.style.transform = 'translateX(-50%)';
+            menu.style.background = 'rgba(0,0,0,0.82)';
+            menu.style.color = '#fff';
+            menu.style.padding = '10px 12px';
+            menu.style.borderRadius = '12px';
+            menu.style.display = 'inline-flex';
+            menu.style.gap = '8px';
+            menu.style.zIndex = '2147483647';
+            menu.style.boxShadow = '0 10px 30px rgba(0,0,0,0.35)';
+            const link = (href, label) => {
+                const a = document.createElement('a');
+                a.href = href; a.textContent = label; a.target = '_self';
+                a.style.color = '#fff'; a.style.textDecoration = 'none';
+                a.style.background = 'rgba(255,255,255,0.12)';
+                a.style.padding = '6px 10px'; a.style.borderRadius = '10px';
+                a.onmouseenter = () => { a.style.background = 'rgba(255,255,255,0.22)'; };
+                a.onmouseleave = () => { a.style.background = 'rgba(255,255,255,0.12)'; };
+                return a;
+            };
+            menu.appendChild(link('../reaction-flow/', 'Reaction Flow'));
+            menu.appendChild(link('../sudoku/', 'Sudoku'));
+            document.body.appendChild(menu);
+            let suppressOnce = true; // ignore the first click after opening
+            const close = (e) => {
+                if (suppressOnce) { suppressOnce = false; return; }
+                if (heartEl.contains(e.target)) return;
+                if (!menu.contains(e.target)) {
+                    menu.remove();
+                    document.removeEventListener('click', close, true);
+                    document.removeEventListener('keydown', onEsc, true);
+                }
+            };
+            const onEsc = (e) => { if (e.key === 'Escape') close(e); };
+            setTimeout(() => {
+                document.addEventListener('click', close, true);
+                document.addEventListener('keydown', onEsc, true);
+            }, 0);
+        };
+        const startPress = () => { clearTimeout(pressTimer); pressTimer = setTimeout(showSecretMenu, pressDelay); };
+        const endPress = () => { clearTimeout(pressTimer); };
+        heartEl.addEventListener('mousedown', startPress);
+        heartEl.addEventListener('touchstart', startPress, { passive: true });
+        heartEl.addEventListener('mouseup', endPress);
+        heartEl.addEventListener('mouseleave', endPress);
+        heartEl.addEventListener('touchend', endPress);
+        heartEl.addEventListener('touchcancel', endPress);
     }
 
     // Initial bind
