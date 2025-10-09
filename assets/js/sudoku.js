@@ -12,6 +12,9 @@
     const N = 9;
     let puzzle = new Array(81).fill(0);
     let solution = new Array(81).fill(0);
+    let selectedNumber = null; // 1-9 or null
+    let errorFlags = new Array(81).fill(false);
+    let errorCount = 0;
 
     function rc(r, c) { return r * N + c; }
     function getRow(i) { return Math.floor(i / N); }
@@ -103,6 +106,92 @@
         return { puzzle, solution: full };
     }
 
+    function countDigits() {
+        const counts = Array(10).fill(0);
+        for (let i = 0; i < 81; i++) {
+            const v = puzzle[i];
+            if (v >= 1 && v <= 9) counts[v]++;
+        }
+        return counts;
+    }
+
+    function updateStatus() {
+        if (errorCount > 0) setStatus(`Fehler: ${errorCount}/4`);
+        else setStatus('');
+    }
+
+    function validateCell(i) {
+        const v = puzzle[i];
+        const inp = gridEl.children[i]?.querySelector('input');
+        if (!inp || v === 0) {
+            if (inp) inp.classList.remove('invalid');
+            errorFlags[i] = false;
+            updateStatus();
+            return true;
+        }
+        const r = getRow(i), c = getCol(i);
+        const tmp = puzzle[i];
+        puzzle[i] = 0;
+        const valid = isValid(puzzle, r, c, v);
+        puzzle[i] = tmp;
+        if (!valid) {
+            inp.classList.add('invalid');
+            if (!errorFlags[i]) {
+                errorFlags[i] = true;
+                errorCount++;
+                if (errorCount >= 4) {
+                    setStatus('4 Fehler – neues Sudoku wird gestartet …');
+                    startNew();
+                    return false;
+                }
+            }
+        } else {
+            inp.classList.remove('invalid');
+            errorFlags[i] = false;
+        }
+        updateStatus();
+        return valid;
+    }
+
+    function validateAll() {
+        for (let i = 0; i < 81; i++) validateCell(i);
+    }
+
+    function setSelectedNumber(n) {
+        selectedNumber = n;
+        const palette = document.getElementById('sdk-palette');
+        if (!palette) return;
+        palette.querySelectorAll('.sdk-digit').forEach(btn => btn.classList.remove('active'));
+        if (n) {
+            const b = palette.querySelector(`[data-digit="${n}"]`);
+            if (b) b.classList.add('active');
+        }
+    }
+
+    function updatePaletteCompletion() {
+        const counts = countDigits();
+        const palette = document.getElementById('sdk-palette');
+        if (!palette) return;
+        palette.querySelectorAll('.sdk-digit').forEach(btn => {
+            const d = Number(btn.dataset.digit);
+            const done = counts[d] >= 9;
+            btn.classList.toggle('done', done);
+            if (done) btn.title = 'Komplett gesetzt'; else btn.removeAttribute('title');
+        });
+    }
+
+    function placeNumberAt(i, n) {
+        const inp = gridEl.children[i]?.querySelector('input');
+        if (!inp || inp.disabled) return;
+        const ch = n ? String(n) : '';
+        inp.value = ch;
+        puzzle[i] = n || 0;
+        // reset counted flag for this cell on change
+        errorFlags[i] = false;
+        validateCell(i);
+        updatePaletteCompletion();
+    }
+
     function renderGrid() {
         gridEl.innerHTML = '';
         for (let r = 0; r < N; r++) {
@@ -139,8 +228,16 @@
                     const ch = e.target.value.replace(/[^1-9]/g, '');
                     e.target.value = ch;
                     puzzle[i] = ch ? Number(ch) : 0;
-                    e.target.classList.remove('invalid');
-                    setStatus('');
+                    // new value -> reset counted flag
+                    errorFlags[i] = false;
+                    validateCell(i);
+                    updatePaletteCompletion();
+                });
+                // Mouse placement with palette
+                cell.addEventListener('click', () => {
+                    if (selectedNumber) {
+                        placeNumberAt(i, selectedNumber);
+                    }
                 });
                 input.addEventListener('focus', () => highlightPeers(r,c,true));
                 input.addEventListener('blur', () => highlightPeers(r,c,false));
@@ -148,6 +245,8 @@
                 gridEl.appendChild(cell);
             }
         }
+        ensurePalette();
+        updatePaletteCompletion();
     }
 
     function highlightPeers(r, c, on) {
@@ -211,8 +310,31 @@
         const gen = generatePuzzle(d);
         puzzle = gen.puzzle.slice();
         solution = gen.solution.slice();
+        errorFlags = new Array(81).fill(false);
+        errorCount = 0;
+        setSelectedNumber(null);
         renderGrid();
         setStatus('Viel Spaß!');
+    }
+
+    function ensurePalette() {
+        if (document.getElementById('sdk-palette')) return;
+        const palette = document.createElement('div');
+        palette.id = 'sdk-palette';
+        palette.className = 'sdk-palette';
+        for (let d = 1; d <= 9; d++) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'sdk-digit';
+            btn.dataset.digit = String(d);
+            btn.textContent = String(d);
+            btn.addEventListener('click', () => {
+                setSelectedNumber(d === selectedNumber ? null : d);
+            });
+            palette.appendChild(btn);
+        }
+        gridEl.insertAdjacentElement('afterend', palette);
+        updateStatus();
     }
 
     // initial render

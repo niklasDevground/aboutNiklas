@@ -57,7 +57,7 @@ main { width: min(980px, 94vw); margin: 0 auto; padding: 0 0 2rem; flex: 1; disp
 
 .sdk-toolbar { display: flex; gap: 0.6rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 0.8rem; }
 .sdk-toolbar label { opacity: 0.8; }
-.sdk-toolbar select { font: inherit; padding: 0.35rem 0.6rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.15); background: rgba(255,255,255,0.8); }
+.sdk-toolbar select { font: inherit; padding: 0.35rem 0.6rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.18); background: var(--card-bg); color: var(--text); }
 .sdk-toolbar .primary, .sdk-toolbar .ghost { font: inherit; font-weight: 600; border-radius: 999px; padding: 0.5rem 1rem; cursor: pointer; }
 .sdk-toolbar .primary { color: #0b1220; background: var(--accent); border: 1px solid transparent; }
 .sdk-toolbar .ghost { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,0.2); }
@@ -68,6 +68,7 @@ main { width: min(980px, 94vw); margin: 0 auto; padding: 0 0 2rem; flex: 1; disp
 .sdk-cell { position: relative; border: 1px solid rgba(0,0,0,0.12); }
 .sdk-cell[data-box-edge="true"] { box-shadow: inset 0 0 0 2px rgba(37,99,235,0.25); }
 .sdk-cell input { width: 100%; height: 100%; border: none; background: transparent; text-align: center; font: 600 clamp(1rem, 5.3vw, 1.5rem) / 1 "Inter", system-ui, sans-serif; color: var(--text); outline: none; }
+.sdk-cell input:focus { background: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
 .sdk-cell input:disabled { color: rgba(0,0,0,0.7); }
 .sdk-cell input.invalid { color: #b91c1c; }
 .sdk-cell input.prefilled { color: rgba(0,0,0,0.8); }
@@ -85,3 +86,17 @@ footer { text-align: center; padding: 1.6rem 1rem 2.2rem; }
 }
 
 /* Respect explicit theme overrides from :root[data-theme] defined in other CSS */
+
+/* Number palette */
+.sdk-palette { display: grid; grid-template-columns: repeat(9, 1fr); gap: 0.4rem; width: min(540px, 92vw); margin: 0.6rem auto 0.2rem; }
+.sdk-digit { font: 700 1rem/1 "Inter", system-ui, sans-serif; padding: 0.5rem 0; border-radius: 10px; border: 1px solid rgba(0,0,0,0.18); background: rgba(255,255,255,0.75); color: var(--text); cursor: pointer; user-select: none; }
+.sdk-digit:hover, .sdk-digit:focus-visible { box-shadow: 0 0 0 2px var(--accent); outline: none; }
+.sdk-digit.active { background: var(--accent); color: #0b1220; border-color: transparent; }
+.sdk-digit.done { opacity: 0.45; }
+
+@media (prefers-color-scheme: dark) {
+    .sdk-digit { background: rgba(15,23,42,0.75); border-color: rgba(255,255,255,0.22); }
+}
+
+:root[data-theme="dark"] .sdk-digit { background: rgba(15,23,42,0.75); border-color: rgba(255,255,255,0.22); }
+:root[data-theme="light"] .sdk-digit { background: rgba(255,255,255,0.9); border-color: rgba(0,0,0,0.18); }
