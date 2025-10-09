@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku – Logikrätsel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/sudoku.css" />
+    <link rel="stylesheet" href="../assets/css/projects.css" />
+</head>
+<body data-page="sudoku">
+    <header>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="../start/">Start</a>
+            <a href="../projekte/">Projekte</a>
+            <button type="button" class="lang-toggle" data-lang-toggle aria-label="Sprache wechseln">Sprache wechseln</button>
+            <button type="button" class="lang-toggle theme-toggle" data-theme-toggle aria-label="Theme wechseln">🌙</button>
+        </nav>
+        <h1>Sudoku</h1>
+        <p class="sub">Fülle das 9×9‑Raster – jede Zahl 1–9 darf pro Zeile, Spalte und 3×3‑Block nur einmal vorkommen.</p>
+    </header>
+
+    <main>
+        <section class="sudoku-card" aria-label="Sudoku Spielbereich">
+            <div class="sdk-toolbar">
+                <label for="sdk-difficulty">Schwierigkeit</label>
+                <select id="sdk-difficulty">
+                    <option value="easy">Leicht</option>
+                    <option value="medium" selected>Mittel</option>
+                    <option value="hard">Schwer</option>
+                </select>
+                <div class="spacer"></div>
+                <button id="sdk-new" class="primary">Neu</button>
+                <button id="sdk-check" class="ghost">Prüfen</button>
+                <button id="sdk-solve" class="ghost">Lösen</button>
+                <button id="sdk-clear" class="ghost">Leeren</button>
+            </div>
+
+            <div id="sdk-grid" class="sdk-grid" aria-label="Sudoku Raster"></div>
+            <div id="sdk-status" class="sdk-status" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer>
+        <span>Zurück zur <a class="cta" href="../projekte/">Projektübersicht</a> ❤️ <span id="year"></span> Niklas</span>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/sudoku.js"></script>
+    </body>
+    </html>
+

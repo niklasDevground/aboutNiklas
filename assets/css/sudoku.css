@@ -1,0 +1,87 @@
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 3.2rem 1.4rem 1.2rem;
+    text-align: center;
+    position: relative;
+}
+
+.site-nav {
+    position: absolute;
+    top: 1.2rem;
+    right: clamp(1rem, 4vw, 2rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.site-nav a {
+    text-decoration: none;
+    font-weight: 500;
+    color: rgba(31, 41, 51, 0.75);
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible { color: var(--text); border-color: var(--accent); }
+
+.lang-toggle { font: inherit; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255,255,255,0.65); color: var(--text); border: 1px solid rgba(37,99,235,0.3); border-radius: 999px; padding: 0.25rem 0.75rem; cursor: pointer; }
+.lang-toggle:hover, .lang-toggle:focus-visible { background: var(--accent); color: white; border-color: transparent; }
+
+h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
+.sub { margin: 0.4rem 0 0; opacity: 0.85; }
+
+main { width: min(980px, 94vw); margin: 0 auto; padding: 0 0 2rem; flex: 1; display: grid; }
+
+.sudoku-card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 1.2rem 1.2rem 1.6rem;
+    margin: 0.8rem 0 1.6rem;
+    box-shadow: 0 18px 38px rgba(31, 41, 51, 0.14);
+    backdrop-filter: blur(10px);
+}
+
+.sdk-toolbar { display: flex; gap: 0.6rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 0.8rem; }
+.sdk-toolbar label { opacity: 0.8; }
+.sdk-toolbar select { font: inherit; padding: 0.35rem 0.6rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.15); background: rgba(255,255,255,0.8); }
+.sdk-toolbar .primary, .sdk-toolbar .ghost { font: inherit; font-weight: 600; border-radius: 999px; padding: 0.5rem 1rem; cursor: pointer; }
+.sdk-toolbar .primary { color: #0b1220; background: var(--accent); border: 1px solid transparent; }
+.sdk-toolbar .ghost { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,0.2); }
+.sdk-toolbar .spacer { flex: 1 1 0; }
+
+.sdk-grid { width: min(540px, 92vw); aspect-ratio: 1/1; margin: 0.6rem auto; display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: repeat(9, 1fr); border: 2px solid var(--accent); border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.6); }
+
+.sdk-cell { position: relative; border: 1px solid rgba(0,0,0,0.12); }
+.sdk-cell[data-box-edge="true"] { box-shadow: inset 0 0 0 2px rgba(37,99,235,0.25); }
+.sdk-cell input { width: 100%; height: 100%; border: none; background: transparent; text-align: center; font: 600 clamp(1rem, 5.3vw, 1.5rem) / 1 "Inter", system-ui, sans-serif; color: var(--text); outline: none; }
+.sdk-cell input:disabled { color: rgba(0,0,0,0.7); }
+.sdk-cell input.invalid { color: #b91c1c; }
+.sdk-cell input.prefilled { color: rgba(0,0,0,0.8); }
+
+.sdk-status { text-align: center; min-height: 1.4em; margin-top: 0.4rem; opacity: 0.85; font-weight: 600; }
+
+footer { text-align: center; padding: 1.6rem 1rem 2.2rem; }
+
+/* Dark theme tweaks inherit from page css variables set by main theme css */
+@media (prefers-color-scheme: dark) {
+    .site-nav a { color: rgba(226,232,240,0.7); }
+    .sdk-toolbar .ghost { border-color: rgba(255,255,255,0.2); }
+    .sdk-grid { background: rgba(15, 23, 42, 0.6); }
+    .sdk-cell input:disabled { color: rgba(255,255,255,0.85); }
+}
+
+/* Respect explicit theme overrides from :root[data-theme] defined in other CSS */
