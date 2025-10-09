@@ -230,3 +230,110 @@
         });
     }
 })();
+
+// --- Simple Easter egg: Konami-Code hearts + toast ---
+(function () {
+    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let buffer = [];
+
+    function showEasterEgg() {
+        if (!document.body || document.getElementById('ee-overlay')) return;
+
+        const name = document.body.dataset ? document.body.dataset.easterName : '';
+        const presetMsg = document.body.dataset ? document.body.dataset.easterMessage : '';
+        const message = presetMsg || (name ? `Für ${name} 💖` : 'Für dich 💖');
+
+        const overlay = document.createElement('div');
+        overlay.id = 'ee-overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.inset = '0';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.zIndex = '2147483646';
+        document.body.appendChild(overlay);
+
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.position = 'fixed';
+        toast.style.left = '50%';
+        toast.style.bottom = '24px';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = 'rgba(0,0,0,0.78)';
+        toast.style.color = '#fff';
+        toast.style.padding = '10px 14px';
+        toast.style.borderRadius = '12px';
+        toast.style.fontFamily = 'inherit';
+        toast.style.boxShadow = '0 6px 20px rgba(0,0,0,0.25)';
+        toast.style.zIndex = '2147483647';
+        toast.style.userSelect = 'none';
+        document.body.appendChild(toast);
+
+        const durationMs = 5000;
+        const start = Date.now();
+        const spawnInterval = setInterval(() => {
+            if (Date.now() - start > durationMs) {
+                clearInterval(spawnInterval);
+                return;
+            }
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            const size = 16 + Math.floor(Math.random() * 18); // 16–34px
+            const left = Math.random() * 100; // vw
+            const travel = 60 + Math.random() * 25; // vh
+            heart.style.position = 'fixed';
+            heart.style.left = left + 'vw';
+            heart.style.bottom = '-10vh';
+            heart.style.fontSize = size + 'px';
+            heart.style.opacity = '0.95';
+            heart.style.transition = 'transform 3.2s linear, opacity 3.2s linear';
+            heart.style.transform = 'translateY(0)';
+            overlay.appendChild(heart);
+            requestAnimationFrame(() => {
+                heart.style.transform = `translateY(-${travel}vh)`;
+                heart.style.opacity = '0';
+            });
+            setTimeout(() => heart.remove(), 3400);
+        }, 120);
+
+        setTimeout(() => {
+            toast.remove();
+            overlay.remove();
+        }, durationMs + 800);
+    }
+
+    function normalizeKey(e) {
+        // Keep arrow keys as-is, letters lowercase
+        if (e.key.length === 1) return e.key.toLowerCase();
+        return e.key;
+    }
+
+    function setupKonami() {
+        window.addEventListener('keydown', (e) => {
+            const key = normalizeKey(e);
+            buffer.push(key);
+            if (buffer.length > konami.length) buffer.shift();
+            const matched = konami.every((k, i) => buffer[i] === (k.length === 1 ? k : k));
+            if (matched) {
+                showEasterEgg();
+                buffer = [];
+            }
+        });
+    }
+
+    function setupTripleClickFallback() {
+        // Bonus trigger: triple-click the footer
+        const footer = document.querySelector('footer');
+        if (!footer) return;
+        let clicks = 0;
+        footer.addEventListener('click', () => {
+            clicks++;
+            if (clicks === 3) {
+                showEasterEgg();
+                clicks = 0;
+            }
+            setTimeout(() => { clicks = 0; }, 800);
+        });
+    }
+
+    setupKonami();
+    setupTripleClickFallback();
+})();
