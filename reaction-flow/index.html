@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reaction Flow – Timing-Spiel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/reaction-flow.css" />
+</head>
+<body data-page="reaction-flow">
+    <header>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="../start/">Start</a>
+            <a href="../projekte/">Projekte</a>
+            <button type="button" class="lang-toggle" data-lang-toggle aria-label="Sprache wechseln">Sprache wechseln</button>
+        </nav>
+        <h1>Reaction Flow</h1>
+        <p class="sub">Klicke im richtigen Moment. Der Puls wird schneller.</p>
+    </header>
+
+    <main>
+        <section class="game-card" aria-label="Reaction Flow Spielbereich">
+            <div class="hud">
+                <div class="stat"><span class="label">Level</span><span id="rf-level">1</span></div>
+                <div class="stat"><span class="label">Score</span><span id="rf-score">0</span></div>
+                <div class="stat"><span class="label">Streak</span><span id="rf-streak">0</span></div>
+            </div>
+
+            <div id="rf-stage" class="stage" role="button" aria-label="Spielfläche – tippe zum Timing">
+                <div id="rf-circle" class="circle" aria-hidden="true"></div>
+                <div id="rf-feedback" class="feedback" aria-live="polite"></div>
+            </div>
+
+            <div class="controls">
+                <button id="rf-start" class="primary">Start</button>
+                <button id="rf-reset" class="ghost" disabled>Reset</button>
+            </div>
+
+            <p class="hint">Ziel: Triff den Maximal-Puls. Perfekt in der Mitte, gut knapp daneben. Mobil: einfach tippen.</p>
+        </section>
+    </main>
+
+    <footer>
+        <span>Zurück zur <a class="cta" href="../projekte/">Projektübersicht</a> • <span id="year"></span> Niklas</span>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/reaction-flow.js"></script>
+</body>
+</html>
+
