@@ -105,8 +105,8 @@
 
         // Window sizes shrink slightly as speed increases
         const speedT = clamp((basePeriod - period) / (basePeriod - minPeriod), 0, 1);
-        const goodWindow = 0.09 - speedT * 0.025;  // ~90ms .. ~65ms @ 1s cycle
-        const perfectWindow = 0.045 - speedT * 0.015; // ~45ms .. ~30ms
+        const goodWindow = Math.max(0.075, 0.105 - speedT * 0.02);    // ~115ms -> ~75ms
+        const perfectWindow = Math.max(0.035, 0.06 - speedT * 0.015); // ~66ms -> ~35ms
 
         if (wrapDist <= perfectWindow) {
             setFeedback('Perfect', 'perfect');
@@ -176,4 +176,3 @@
     refreshHUD();
     resetGame(false);
 })();
-
