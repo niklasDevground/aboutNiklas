@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini-Tank-Battle – 2D Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/projects.css" />
+    <link rel="stylesheet" href="../assets/css/tanks.css" />
+</head>
+<body data-page="tanks">
+    <header>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="../start/">Start</a>
+            <a href="../projekte/">Projekte</a>
+            <button type="button" class="lang-toggle" data-lang-toggle aria-label="Sprache wechseln">Sprache wechseln</button>
+            <button type="button" class="lang-toggle theme-toggle" data-theme-toggle aria-label="Theme wechseln">�YOT</button>
+        </nav>
+        <h1>Mini-Tank-Battle</h1>
+        <p class="sub">Zwei Panzer, eine Arena: Verbünde dich mit deinem Timing, sichere Power-Ups und schalte deinen Gegner aus.</p>
+    </header>
+
+    <main>
+        <section class="tank-card" aria-label="Mini-Tank-Battle Spielfläche">
+            <div class="tank-hud" role="status" aria-live="polite">
+                <div class="hud-group">
+                    <span class="label">Timer</span>
+                    <span id="tank-timer">--:--</span>
+                </div>
+                <div class="hud-group">
+                    <span class="label">Dein Score</span>
+                    <span id="tank-score-self">0</span>
+                </div>
+                <div class="hud-group">
+                    <span class="label">Gegner</span>
+                    <span id="tank-score-opponent">0</span>
+                </div>
+                <div class="hud-group">
+                    <span class="label">HP</span>
+                    <span id="tank-health">100</span>
+                </div>
+                <div class="hud-group">
+                    <span class="label">Power-Up</span>
+                    <span id="tank-power">–</span>
+                </div>
+                <div class="hud-group hud-controls">
+                    <button id="tank-pause" class="ghost" type="button">Pause (P)</button>
+                    <button id="tank-mute" class="ghost" type="button">Mute (M)</button>
+                </div>
+            </div>
+
+            <div class="tank-canvas-wrapper">
+                <canvas id="tank-canvas" aria-label="Mini-Tank-Battle Arena" role="img"></canvas>
+
+                <div id="tank-overlay-matchmaking" class="tank-overlay tank-overlay--active" role="dialog" aria-modal="true">
+                    <div class="overlay-card">
+                        <h2>Matchmaking…</h2>
+                        <p>Suche nach einem Gegner. Sobald zwei Spieler verbunden sind, startet der Countdown.</p>
+                        <button id="tank-cancel" class="ghost" type="button">Abbrechen</button>
+                    </div>
+                </div>
+
+                <div id="tank-overlay-countdown" class="tank-overlay" role="dialog" aria-modal="true" hidden>
+                    <div class="overlay-card">
+                        <h2>Bereit machen!</h2>
+                        <p id="tank-countdown-text">3</p>
+                    </div>
+                </div>
+
+                <div id="tank-overlay-round" class="tank-overlay" role="dialog" aria-modal="true" hidden>
+                    <div class="overlay-card">
+                        <h2>Runde beendet</h2>
+                        <p id="tank-round-summary">Score: 0 – 0</p>
+                        <div class="overlay-actions">
+                            <button id="tank-rematch" class="primary" type="button">Rematch</button>
+                            <button id="tank-exit" class="ghost" type="button">Zurück</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tank-overlay-pause" class="tank-overlay" role="dialog" aria-modal="true" hidden>
+                    <div class="overlay-card">
+                        <h2>Pause</h2>
+                        <p>Steuerung: WASD/←↑↓→ zum Fahren, Leertaste schießt. Power-Ups einsammeln für Vorteile.</p>
+                        <button id="tank-resume" class="primary" type="button">Weiter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tank-touch" aria-label="Touch-Steuerung">
+                <button class="touch-btn" data-touch="forward" aria-label="Vorwärts">▲</button>
+                <button class="touch-btn" data-touch="backward" aria-label="Rückwärts">▼</button>
+                <button class="touch-btn" data-touch="left" aria-label="Nach links drehen">◀</button>
+                <button class="touch-btn" data-touch="right" aria-label="Nach rechts drehen">▶</button>
+                <button class="touch-btn touch-btn--fire" data-touch="fire" aria-label="Feuern">●</button>
+                <button class="touch-btn" data-touch="pause" aria-label="Pause">II</button>
+                <button class="touch-btn" data-touch="mute" aria-label="Mute">🔇</button>
+            </div>
+
+            <details class="tank-info" aria-label="Spielbeschreibung">
+                <summary>Was erwartet dich?</summary>
+                <ul>
+                    <li>Du spielst live gegen einen anderen Spieler – die Arena füllt sich automatisch.</li>
+                    <li>Steuere deinen Panzer präzise, weiche Projektilen aus und nutze Deckungen.</li>
+                    <li>Power-Ups wie Speed-Boost, Schild oder Ricochet erscheinen zufällig.</li>
+                    <li>Wer zuerst das Score-Limit erreicht oder nach Ablauf des Timers vorne liegt, gewinnt die Runde.</li>
+                </ul>
+            </details>
+        </section>
+    </main>
+
+    <footer>
+        <span>Zurück zur <a class="cta" href="../projekte/">Projektübersicht</a> ✨ <span id="year"></span> Niklas</span>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/tanks.js" type="module"></script>
+</body>
+</html>
