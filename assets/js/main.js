@@ -519,6 +519,7 @@
             };
             menu.appendChild(link('../reaction-flow/', 'Reaction Flow'));
             menu.appendChild(link('../sudoku/', 'Sudoku'));
+            menu.appendChild(link('../games/space-shooter.html', 'Space Shooter'));
             document.body.appendChild(menu);
             let suppressOnce = true; // ignore the first click after opening
             const close = (e) => {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Shooter – Retro-Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/projects.css" />
+    <link rel="stylesheet" href="../assets/css/space-shooter.css" />
+</head>
+<body data-page="space-shooter">
+    <header>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="../start/">Start</a>
+            <a href="../projekte/">Projekte</a>
+            <button type="button" class="lang-toggle" data-lang-toggle aria-label="Sprache wechseln">Sprache wechseln</button>
+            <button type="button" class="lang-toggle theme-toggle" data-theme-toggle aria-label="Theme wechseln">�YOT</button>
+        </nav>
+        <h1>Space Shooter</h1>
+        <p class="sub">Retro-inspiriertes Arcade-Game – verteidige deine Basis gegen anrückende Wellen.</p>
+    </header>
+
+    <main>
+        <section class="game-card" aria-label="Space Shooter Spielbereich">
+            <div class="hud" role="status" aria-live="polite">
+                <div class="stat">
+                    <span class="label">Score</span>
+                    <span id="ss-score">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Highscore</span>
+                    <span id="ss-highscore">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Welle</span>
+                    <span id="ss-wave">1</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Leben</span>
+                    <span id="ss-lives">3</span>
+                </div>
+                <div class="stat stat--controls">
+                    <button id="ss-pause" class="ghost" type="button">Pause (P)</button>
+                    <button id="ss-mute" class="ghost" type="button">Mute (M)</button>
+                </div>
+                <div class="stat stat--volume">
+                    <label for="ss-volume" class="label">Lautstärke</label>
+                    <input id="ss-volume" type="range" min="0" max="1" step="0.05" value="0.6" aria-label="Lautstärke einstellen" />
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="ss-canvas" role="img" aria-label="Space Shooter Spielfeld"></canvas>
+
+                <div id="ss-overlay-start" class="overlay overlay--active" role="dialog" aria-modal="true">
+                    <div class="overlay-card">
+                        <h2>Bereit für den Start?</h2>
+                        <p>Steuere dein Schiff mit &larr; &rarr; oder A / D, feuere mit Leertaste. P pausiert, M schaltet Audio stumm.</p>
+                        <button id="ss-start" class="primary" type="button">Spiel starten</button>
+                    </div>
+                </div>
+
+                <div id="ss-overlay-gameover" class="overlay" role="dialog" aria-modal="true" hidden>
+                    <div class="overlay-card">
+                        <h2>Game Over</h2>
+                        <p id="ss-gameover-text">Du wurdest getroffen!</p>
+                        <button id="ss-restart" class="primary" type="button">Noch einmal</button>
+                    </div>
+                </div>
+
+                <div id="ss-overlay-paused" class="overlay" role="dialog" aria-modal="true" hidden>
+                    <div class="overlay-card">
+                        <h2>Pause</h2>
+                        <p>Drücke P oder den Button, um weiterzuspielen.</p>
+                        <button id="ss-resume" class="primary" type="button">Weiter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="touch-controls" aria-label="Touch-Steuerung">
+                <button class="touch-btn" data-touch="left" aria-label="Nach links bewegen">&#9664;</button>
+                <button class="touch-btn" data-touch="fire" aria-label="Schießen">&#9679;</button>
+                <button class="touch-btn" data-touch="right" aria-label="Nach rechts bewegen">&#9654;</button>
+                <button class="touch-btn" data-touch="pause" aria-label="Pause umschalten">&#10073;&#10073;</button>
+                <button class="touch-btn" data-touch="mute" aria-label="Audio stumm schalten">&#128264;</button>
+            </div>
+
+            <details class="info" aria-label="Spielhilfe">
+                <summary>Wie funktioniert das Spiel?</summary>
+                <ul>
+                    <li>Besiege Wellen von Gegnern, die sich horizontal bewegen und zurückschießen.</li>
+                    <li>Sammle Power-Ups wie Rapid Fire, Shield und Spread Shot ein – sie halten 12 Sekunden.</li>
+                    <li>Du startest mit drei Leben. Treffer von Gegnern oder ihren Projektilen kosten ein Leben.</li>
+                    <li>Score und Highscore werden lokal gespeichert. Hol dir den neuen Rekord!</li>
+                </ul>
+            </details>
+        </section>
+    </main>
+
+    <footer>
+        <span>Zurück zur <a class="cta" href="../projekte/">Projektübersicht</a> &#10024; <span id="year"></span> Niklas</span>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/space-shooter.js"></script>
+</body>
+</html>
