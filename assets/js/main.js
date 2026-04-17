@@ -7,7 +7,6 @@
         de: {
             'common.navStart': 'Start',
             'common.navProjects': 'Projekte',
-            'nav.tanks': 'Mini-Tank-Battle',
             'common.navAriaLabel': 'Hauptnavigation',
             'common.langToggleLabel': 'Sprache wechseln',
             'start.metaTitle': 'Über Niklas',
@@ -80,7 +79,6 @@
         en: {
             'common.navStart': 'Home',
             'common.navProjects': 'Projects',
-            'nav.tanks': 'Mini-Tank-Battle',
             'common.navAriaLabel': 'Primary navigation',
             'common.langToggleLabel': 'Change language',
             'start.metaTitle': 'About Niklas',
@@ -522,7 +520,6 @@
             menu.appendChild(link('../reaction-flow/', 'Reaction Flow'));
             menu.appendChild(link('../sudoku/', 'Sudoku'));
             menu.appendChild(link('../games/space-shooter.html', 'Space Shooter'));
-            menu.appendChild(link('../games/tanks.html', 'Mini-Tank-Battle'));
             document.body.appendChild(menu);
             let suppressOnce = true; // ignore the first click after opening
             const close = (e) => {
